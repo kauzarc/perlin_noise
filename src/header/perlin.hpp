@@ -12,10 +12,15 @@ private:
 
 public:
     Perlin();
+    Perlin(int maxx, int maxy);
 
 public:
     void init(int maxx, int maxy);
+    void reload();
     double get(double x, double y);
+
+    int get_maxx();
+    int get_maxy();
 
 private:
     double lerp(double a0, double a1, double w);

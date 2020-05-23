@@ -18,7 +18,7 @@ public:
 public:
     bool OnUserCreate() override
     {
-        m_perlin.init(nx + 1, ny + 1);
+        m_perlin.init(nx, ny);
         double scalex = (double)nx / ScreenWidth();
         double scaley = (double)ny / ScreenHeight();
 

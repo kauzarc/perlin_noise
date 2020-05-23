@@ -6,8 +6,19 @@ Perlin::Perlin()
 {
 }
 
+Perlin::Perlin(int maxx, int maxy)
+{
+    init(maxx, maxy);
+}
+
 void Perlin::init(int maxx, int maxy)
 {
+    m_maxx = maxx;
+    m_maxy = maxy;
+
+    maxx++;
+    maxy++;
+
     std::random_device rd;
     std::uniform_real_distribution<> dis(0., 1.);
 
@@ -23,6 +34,11 @@ void Perlin::init(int maxx, int maxy)
             m_gradient[x][y].push_back(dis(rd));
         }
     }
+}
+
+void Perlin::reload()
+{
+    init(m_maxy, m_maxy);
 }
 
 double Perlin::get(double x, double y)
@@ -45,6 +61,16 @@ double Perlin::get(double x, double y)
     value = lerp(ix0, ix1, sy);
 
     return value;
+}
+
+int Perlin::get_maxx()
+{
+    return m_maxx;
+}
+
+int Perlin::get_maxy()
+{
+    return m_maxy;
 }
 
 double Perlin::lerp(double a0, double a1, double w)
