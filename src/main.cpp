@@ -10,6 +10,7 @@ private:
     Perlin m_perlin;
     std::vector<char> m_noise;
     int nx = 10, ny = 10;
+    int n_saved = 0;
 
 public:
     Application()
@@ -75,9 +76,10 @@ public:
     void save()
     {
         Image img(ScreenWidth(), ScreenHeight(), m_noise);
-        std::string name = "noise_" + nx;
-        name += "_" + ny;
-        img.save(name);
+        std::stringstream name;
+        name << "noise_" << n_saved << "_n" << nx;
+        img.save(name.str());
+        n_saved++;
     }
 };
 
