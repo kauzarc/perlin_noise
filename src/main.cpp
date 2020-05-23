@@ -75,7 +75,9 @@ public:
     void save()
     {
         Image img(ScreenWidth(), ScreenHeight(), m_noise);
-        img.save("test");
+        std::string name = "noise_" + nx;
+        name += "_" + ny;
+        img.save(name);
     }
 };
 
