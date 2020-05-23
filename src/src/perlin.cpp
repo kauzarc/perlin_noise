@@ -1,12 +1,12 @@
 #include "../header/perlin.hpp"
 
-#include <random>
-
 Perlin::Perlin()
+    : m_dis(0., 1.)
 {
 }
 
 Perlin::Perlin(int maxx, int maxy)
+    : Perlin()
 {
     init(maxx, maxy);
 }
@@ -19,8 +19,7 @@ void Perlin::init(int maxx, int maxy)
     maxx++;
     maxy++;
 
-    std::random_device rd;
-    std::uniform_real_distribution<> dis(0., 1.);
+    m_gradient.clear();
 
     m_gradient.reserve(maxx);
     for (int x = 0; x < maxx; x++)
@@ -30,8 +29,8 @@ void Perlin::init(int maxx, int maxy)
         for (int y = 0; y < maxy; y++)
         {
             m_gradient[x].emplace_back();
-            m_gradient[x][y].push_back(dis(rd));
-            m_gradient[x][y].push_back(dis(rd));
+            m_gradient[x][y].push_back(m_dis(m_re));
+            m_gradient[x][y].push_back(m_dis(m_re));
         }
     }
 }

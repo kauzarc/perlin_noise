@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <random>
 
 typedef std::vector<std::vector<std::vector<double>>> gradient_type;
 
@@ -9,6 +10,9 @@ class Perlin
 private:
     int m_maxx, m_maxy;
     gradient_type m_gradient;
+
+    std::default_random_engine m_re;
+    std::uniform_real_distribution<> m_dis;
 
 public:
     Perlin();
