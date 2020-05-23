@@ -2,12 +2,13 @@
 #include "header/olcPixelGameEngine.h"
 
 #include "header/perlin.hpp"
+#include "header/image.hpp"
 
 class Application : public olc::PixelGameEngine
 {
 private:
     Perlin m_perlin;
-    std::vector<u_int8_t> m_noise;
+    std::vector<char> m_noise;
     int nx = 10, ny = 10;
 
 public:
@@ -44,6 +45,11 @@ public:
             draw_noise();
         }
 
+        if (GetKey(olc::Key::S).bPressed)
+        {
+            save();
+        }
+
         return true;
     }
 
@@ -64,6 +70,12 @@ public:
                 Draw(x, y, olc::Pixel(v, v, v));
             }
         }
+    }
+
+    void save()
+    {
+        Image img(ScreenWidth(), ScreenHeight(), m_noise);
+        img.save("test");
     }
 };
 
