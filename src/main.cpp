@@ -59,8 +59,8 @@ public:
         m_perlin.init(nx, ny);
         m_noise.clear();
         m_noise.reserve(nx * ny);
-        double scalex = (double)nx / ScreenWidth();
-        double scaley = (double)ny / ScreenHeight();
+        double scalex = (double)nx / (double)ScreenWidth();
+        double scaley = (double)ny / (double)ScreenHeight();
 
         for (int x = 0; x < ScreenWidth(); x++)
         {
